@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucas Feitosa Santos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:    #F4F3EF;
+      --green: #3B6D11;
+      --dark:  #0C0C0A;
+      --text:  #1a1a1a;
+      --muted: #888;
+      --card:  #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 100px;
+      padding: 8px 20px 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      backdrop-filter: blur(32px) saturate(160%);
+      -webkit-backdrop-filter: blur(32px) saturate(160%);
+      white-space: nowrap;
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav.light {
+      background: rgba(244, 243, 239, 0.90);
+      border-color: rgba(0, 0, 0, 0.09);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+
+    nav.light .nav-links a { color: rgba(26, 26, 26, 0.6); }
+
+    .nav-links a:hover { color: rgba(255,255,255,1); }
+    nav.light .nav-links a:hover { color: rgba(26,26,26,1); }
+
+    /* ─── HERO DARK ──────────────────────────────── */
+    .hero-dark {
+      position: relative;
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 88px;
+    }
+
+    .hero-logo-wrap {
+      margin-bottom: 40px;
+    }
+
+    .hero-dark h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(46px, 8.5vw, 100px);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 36px;
+    }
+
+    .hero-dark h1 em {
+      font-style: italic;
+      background: linear-gradient(135deg, #9ef050 0%, #4aaa1a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 22px rgba(120, 220, 50, 0.50));
+    }
+
+    /* Social pills */
+    .social-pills {
+      display: flex;
+      gap: 9px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 100px;
+      padding: 9px 17px;
+      color: rgba(255, 255, 255, 0.68);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 400;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .social-pill .pill-icon { font-size: 15px; line-height: 1; }
+
+    .social-pill.p-link { cursor: pointer; }
+
+    .social-pill.p-link:hover {
+      background: rgba(255, 255, 255, 0.13);
+      border-color: rgba(255, 255, 255, 0.26);
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Hero body */
+    .hero-desc {
+      font-size: clamp(15px, 2vw, 17px);
+      color: rgba(255, 255, 255, 0.38);
+      max-width: 460px;
+      line-height: 1.75;
+      margin-bottom: 44px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      color: var(--dark);
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .hero-cta:hover { opacity: 0.82; }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.18);
+      animation: nudge 2.4s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes nudge {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── BENTO SECTION ──────────────────────────── */
+    .bento-section {
+      background: var(--bg);
+      padding-bottom: 24px;
+    }
+
+    /* ─── BENTO GRID ─────────────────────────────── */
+    .links-bento {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 24px 0;
+    }
+
+    .links-bento-label {
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      margin-bottom: 28px;
+    }
+
+    .links-bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .bento-card {
+      background: var(--card);
+      border-radius: 20px;
+      border: 1px solid rgba(0,0,0,0.07);
+      padding: 26px;
+      position: relative;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: box-shadow 0.22s ease, transform 0.22s ease;
+    }
+
+    .bento-card.clickable { cursor: pointer; }
+
+    .bento-card.clickable:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+
+    /* Chip label — bordered widget tag */
+    .bento-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(26,26,26,0.4);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    /* Instagram */
+    .bento-card-instagram { grid-column: span 2; }
+
+    .bento-arrow {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--green);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .bento-card-instagram:hover .bento-arrow {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .bento-handle {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(30px, 4.5vw, 46px);
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .bento-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(26,26,26,0.42);
+    }
+
+    /* YouTube */
+    .bento-card-youtube {
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+      padding: 20px;
+    }
+
+    .yt-embed {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .yt-screen {
+      background: #0f0f0f;
+      border-radius: 10px;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .yt-duration {
+      position: absolute;
+      bottom: 7px;
+      right: 8px;
+      background: rgba(0,0,0,0.82);
+      color: #fff;
+      font-size: 10.5px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .yt-progressbar {
+      height: 3px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 2px;
+      margin-bottom: 11px;
+    }
+
+    .yt-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #ff0000;
+      border-radius: 2px;
+    }
+
+    .yt-meta { display: flex; flex-direction: column; gap: 3px; }
+
+    .yt-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .yt-channel {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11.5px;
+      color: rgba(26,26,26,0.42);
+    }
+
+    /* WhatsApp */
+    .bento-card-whatsapp {
+      background: #171715;
+      border-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+    }
+
+    .bento-card-whatsapp .bento-chip {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.32);
+    }
+
+    .bento-card-whatsapp:hover {
+      box-shadow: 0 6px 28px rgba(0,0,0,0.28);
+      transform: translateY(-3px);
+    }
+
+    .bento-green-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #6abf3a;
+      background: rgba(59, 109, 17, 0.18);
+      border-radius: 100px;
+      padding: 5px 12px;
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+
+    .bento-green-pill::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6abf3a;
+      box-shadow: 0 0 7px #6abf3a;
+      flex-shrink: 0;
+    }
+
+    .bento-cta {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      color: #F4F3EF;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .bento-card-whatsapp .bento-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.28);
+      margin-top: 10px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: #0C0C0A;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 52px 48px 44px;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1.5fr;
+      align-items: start;
+      gap: 32px;
+    }
+
+    .footer-brand {
+      font-family: 'Instrument Serif', serif;
+      font-size: 21px;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .footer-brand em {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-col p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.85;
+    }
+
+    @media (max-width: 600px) {
+      footer { padding: 44px 28px 40px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero-dark h1 { letter-spacing: -0.02em; }
+      .social-pills { gap: 7px; }
+      .social-pill { padding: 8px 13px; font-size: 12.5px; }
+      nav { gap: 16px; padding: 8px 14px 8px 8px; }
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: 13px; }
+      .links-bento-grid { grid-template-columns: 1fr; }
+      .bento-card-instagram { grid-column: span 1; }
+      .bento-handle { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ══════════════════════════════════ -->
+  <nav id="main-nav" aria-label="Navegação">
+    <div class="nav-logo" aria-label="Logo Lucas Feitosa">
+      <svg viewBox="0 0 100 115" xmlns="http://www.w3.org/2000/svg" width="30" height="34" aria-hidden="true">
+        <path fill="#3B6D11" d="M 55 8 C 78 6 92 22 92 40 C 92 58 86 75 78 83 L 72 100 L 50 100 L 50 88 C 44 88 36 84 30 78 C 22 70 14 60 10 53 C 12 47 16 40 20 36 C 18 26 24 14 35 10 C 42 7 50 7 55 8 Z"/>
+        <polygon fill="rgba(244,243,239,0.9)" points="68,17 70,27 77,19 74,29 84,26 76,33 86,35 76,37 84,44 74,41 77,51 70,43 68,53 66,43 59,51 62,41 50,35 60,37 52,26 60,33 59,19 66,27"/>
+      </svg>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#conecte">Conecte-se</a></li>
+      <li><a href="https://instagram.com/1lucas.feitosa" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://wa.me/5544998773435" target="_blank" rel="noopener">WhatsApp</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ FOLD 1 — DARK HERO ════════════════════ -->
+  <section class="hero-dark" id="home">
+
+    <div class="hero-logo-wrap" aria-hidden="true">
+      <svg viewBox="0 0 100 115" xmlns="http://www.w3.org/2000/svg" width="52" height="60">
+        <path fill="#3B6D11" d="M 55 8 C 78 6 92 22 92 40 C 92 58 86 75 78 83 L 72 100 L 50 100 L 50 88 C 44 88 36 84 30 78 C 22 70 14 60 10 53 C 12 47 16 40 20 36 C 18 26 24 14 35 10 C 42 7 50 7 55 8 Z"/>
+        <polygon fill="rgba(255,255,255,0.82)" points="68,17 70,27 77,19 74,29 84,26 76,33 86,35 76,37 84,44 74,41 77,51 70,43 68,53 66,43 59,51 62,41 50,35 60,37 52,26 60,33 59,19 66,27"/>
+      </svg>
+    </div>
+
+    <h1>Faço marcas que<br>querem ser <em>GOATs</em></h1>
+
+    <div class="social-pills">
+      <div class="social-pill p-link"
+           onclick="window.open('https://instagram.com/1lucas.feitosa','_blank')">
+        <span class="pill-icon">📸</span>
+        <span>@1lucas.feitosa</span>
+      </div>
+      <div class="social-pill">
+        <span class="pill-icon">▶</span>
+        <span>YouTube — em breve</span>
+      </div>
+      <div class="social-pill p-link"
+           onclick="window.open('https://wa.me/5544998773435','_blank')">
+        <span class="pill-icon">💬</span>
+        <span>WhatsApp</span>
+      </div>
+    </div>
+
+    <p class="hero-desc">
+      Paulista do interior do Paraná. 20 anos.<br>
+      Ajudei a crescer o maior centro de mídias wellness do Brasil, a FitFeed de 0 a 250k. Hoje sou CS no Manual de Donos, uma das maiores escolas de educação para empreendedores.
+    </p>
+
+    <a class="hero-cta" href="https://wa.me/5544998773435" target="_blank" rel="noopener">
+      → Fala comigo
+    </a>
+
+    <div class="scroll-hint" aria-hidden="true">↓</div>
+
+  </section>
+
+  <!-- ═══ FOLD 2 — LINKS ════════════════════════ -->
+  <div class="bento-section" id="conecte">
+    <div class="links-bento">
+
+      <p class="links-bento-label">Conecte-se</p>
+
+      <div class="links-bento-grid">
+
+        <!-- Instagram — full width -->
+        <div class="bento-card bento-card-instagram clickable"
+             onclick="window.open('https://instagram.com/1lucas.feitosa','_blank')">
+          <div class="bento-chip">Instagram</div>
+          <div class="bento-arrow">↗</div>
+          <div class="bento-handle">@1lucas.feitosa</div>
+          <p class="bento-sub">Estratégia, bastidores e construção.</p>
+        </div>
+
+        <!-- YouTube — half width -->
+        <div class="bento-card bento-card-youtube">
+          <div class="bento-chip">YouTube</div>
+          <div class="yt-embed">
+            <div class="yt-screen">
+              <svg viewBox="0 0 68 48" width="52" height="37" aria-hidden="true">
+                <path d="M66.5 7.7c-.8-2.9-2.9-5-5.8-5.8C55.4 0 34 0 34 0S12.6 0 7.3 1.9C4.5 2.7 2.4 4.8 1.5 7.7 0 13 0 24 0 24s0 11 1.5 16.3c.8 2.9 2.9 5 5.8 5.8C12.6 48 34 48 34 48s21.4 0 26.7-1.9c2.9-.8 5-2.9 5.8-5.8C68 35 68 24 68 24s0-11-1.5-16.3z" fill="#ff0000"/>
+                <path d="M45 24L27 14v20" fill="white"/>
+              </svg>
+              <div class="yt-duration">Em breve</div>
+            </div>
+            <div class="yt-progressbar">
+              <div class="yt-progress-fill"></div>
+            </div>
+            <div class="yt-meta">
+              <div class="yt-title">Documentando a construção.</div>
+              <div class="yt-channel">Lucas Feitosa Santos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp — half width, dark -->
+        <div class="bento-card bento-card-whatsapp clickable"
+             onclick="window.open('https://wa.me/5544998773435','_blank')">
+          <div>
+            <div class="bento-chip">WhatsApp</div>
+            <div class="bento-green-pill">Aberto a projetos</div>
+          </div>
+          <div>
+            <div class="bento-cta">Fala comigo →</div>
+            <p class="bento-sub">Aberto para projetos e parcerias.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        Lucas<em>Feitosa</em>
+      </div>
+
+      <div class="footer-col">
+        <p>Lucas Feitosa Santos</p>
+        <p>Paranavaí, PR · 2026</p>
+      </div>
+
+      <div class="footer-col">
+        <p>Jovem se divertindo</p>
+        <p>enquanto se desafia</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    // Toggle navbar style when hero scrolls out of view
+    var hero = document.getElementById('home');
+    var nav  = document.getElementById('main-nav');
+
+    new IntersectionObserver(function (entries) {
+      nav.classList.toggle('light', !entries[0].isIntersecting);
+    }, { threshold: 0.08 }).observe(hero);
+  </script>
+
+</body>
+</html>
