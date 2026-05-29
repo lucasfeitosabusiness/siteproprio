@@ -792,15 +792,10 @@
 
     function closePopup() { overlay.classList.remove('visible'); }
 
-    // Show after 6s, once per day
-    var lastSeen = localStorage.getItem('sub-shown');
-    var oneDayMs = 24 * 60 * 60 * 1000;
-    if (!lastSeen || Date.now() - parseInt(lastSeen) > oneDayMs) {
-      setTimeout(function () {
-        overlay.classList.add('visible');
-        localStorage.setItem('sub-shown', Date.now().toString());
-      }, 6000);
-    }
+    // Show after 2s — always (testing mode)
+    setTimeout(function () {
+      overlay.classList.add('visible');
+    }, 2000);
 
     // Close on overlay background click
     overlay.addEventListener('click', function (e) {
