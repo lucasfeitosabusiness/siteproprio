@@ -426,6 +426,137 @@
       margin-top: 10px;
     }
 
+    /* ─── SUBSCRIBE POPUP ───────────────────────── */
+    .subscribe-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 12, 10, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .subscribe-overlay.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .subscribe-modal {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 48px 40px 40px;
+      max-width: 440px;
+      width: 100%;
+      position: relative;
+      text-align: center;
+      transform: translateY(20px);
+      transition: transform 0.35s ease;
+    }
+
+    .subscribe-overlay.visible .subscribe-modal {
+      transform: translateY(0);
+    }
+
+    .subscribe-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #999;
+      transition: border-color 0.2s, color 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .subscribe-close:hover { border-color: rgba(0,0,0,0.25); color: #444; }
+
+    .subscribe-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .subscribe-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 30px;
+      color: var(--text);
+      line-height: 1.12;
+      margin-bottom: 12px;
+    }
+
+    .subscribe-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(26,26,26,0.48);
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .subscribe-input {
+      flex: 1;
+      padding: 13px 18px;
+      border: 1px solid rgba(0,0,0,0.11);
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: #f7f6f2;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .subscribe-input:focus { border-color: var(--green); }
+
+    .subscribe-btn {
+      background: var(--text);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 13px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .subscribe-btn:hover { opacity: 0.78; }
+
+    .subscribe-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: rgba(26,26,26,0.3);
+    }
+
     /* ─── FOOTER ─────────────────────────────────── */
     footer {
       background: #0C0C0A;
@@ -623,14 +754,78 @@
     </div>
   </footer>
 
+  <!-- ═══ SUBSCRIBE POPUP ══════════════════════════ -->
+  <div class="subscribe-overlay" id="subscribe-overlay" role="dialog" aria-modal="true">
+    <div class="subscribe-modal">
+      <button class="subscribe-close" id="subscribe-close" aria-label="Fechar">✕</button>
+      <p class="subscribe-eyebrow">Newsletter</p>
+      <h2 class="subscribe-title">Construindo em público.<br>Você acompanha.</h2>
+      <p class="subscribe-desc">Documento a jornada de construir marcas do zero. Toda semana no Substack.</p>
+      <div class="subscribe-form">
+        <input
+          type="email"
+          id="subscribe-email"
+          class="subscribe-input"
+          placeholder="seu@email.com"
+          autocomplete="email"
+        />
+        <button class="subscribe-btn" id="subscribe-btn">Entrar</button>
+      </div>
+      <p class="subscribe-note">Sem spam. Cancele quando quiser.</p>
+    </div>
+  </div>
+
   <script>
-    // Toggle navbar style when hero scrolls out of view
+    // Navbar dark/light toggle
     var hero = document.getElementById('home');
     var nav  = document.getElementById('main-nav');
 
     new IntersectionObserver(function (entries) {
       nav.classList.toggle('light', !entries[0].isIntersecting);
     }, { threshold: 0.08 }).observe(hero);
+
+    // Subscribe popup
+    var overlay = document.getElementById('subscribe-overlay');
+    var closeBtn = document.getElementById('subscribe-close');
+    var submitBtn = document.getElementById('subscribe-btn');
+    var emailInput = document.getElementById('subscribe-email');
+
+    function closePopup() { overlay.classList.remove('visible'); }
+
+    // Show after 6s, only once per session
+    if (!sessionStorage.getItem('sub-shown')) {
+      setTimeout(function () {
+        overlay.classList.add('visible');
+        sessionStorage.setItem('sub-shown', '1');
+      }, 6000);
+    }
+
+    // Close on overlay background click
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closePopup();
+    });
+
+    // Close button
+    closeBtn.addEventListener('click', closePopup);
+
+    // Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePopup();
+    });
+
+    // Submit → Substack with email pre-filled
+    submitBtn.addEventListener('click', function () {
+      var email = emailInput.value.trim();
+      var base  = 'https://eulucasfeitosa.substack.com/subscribe';
+      var url   = email ? base + '?email=' + encodeURIComponent(email) : base;
+      window.open(url, '_blank');
+      closePopup();
+    });
+
+    // Submit on Enter key inside input
+    emailInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') submitBtn.click();
+    });
   </script>
 
 </body>
