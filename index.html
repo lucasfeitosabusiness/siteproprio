@@ -792,11 +792,13 @@
 
     function closePopup() { overlay.classList.remove('visible'); }
 
-    // Show after 6s, only once per session
-    if (!sessionStorage.getItem('sub-shown')) {
+    // Show after 6s, once per day
+    var lastSeen = localStorage.getItem('sub-shown');
+    var oneDayMs = 24 * 60 * 60 * 1000;
+    if (!lastSeen || Date.now() - parseInt(lastSeen) > oneDayMs) {
       setTimeout(function () {
         overlay.classList.add('visible');
-        sessionStorage.setItem('sub-shown', '1');
+        localStorage.setItem('sub-shown', Date.now().toString());
       }, 6000);
     }
 
