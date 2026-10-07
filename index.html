@@ -3,853 +3,862 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lucas Feitosa Santos</title>
+  <title>Lucas Feitosa</title>
+  <meta name="description" content="Branding, posicionamento e audiência. De cidade pequena para o mundo." />
+  <meta property="og:title" content="Lucas Feitosa — Aprenda com quem está construindo" />
+  <meta property="og:image" content="lucas-mundo.jpg" />
+  <link rel="icon" href="lucas-mundo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:    #F4F3EF;
-      --green: #3B6D11;
-      --dark:  #0C0C0A;
-      --text:  #1a1a1a;
-      --muted: #888;
-      --card:  #ffffff;
+      --ink:     #0E0F0D;
+      --ink-2:   #1A1C19;
+      --paper:   #F3F2EE;
+      --panel:   #E8E7E2;
+      --white:   #FAFAF7;
+      --grey:    #7D7F79;
+      --grey-2:  #B4B5AF;
+      --line:    rgba(14,15,13,0.12);
+      --line-d:  rgba(250,250,247,0.12);
+      --green:   #1E6B3B;
+      --green-d: #154F2B;
+      --signal:  #4CC27A;
+      --r-xl: 28px;
+      --r-lg: 20px;
+      --sans: 'Geist', system-ui, sans-serif;
+      --mono: 'Geist Mono', ui-monospace, monospace;
+      --ease: cubic-bezier(.2,.8,.2,1);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
-    /* ─── NAVBAR ─────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 100px;
-      padding: 8px 20px 8px 10px;
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      backdrop-filter: blur(32px) saturate(160%);
-      -webkit-backdrop-filter: blur(32px) saturate(160%);
-      white-space: nowrap;
-      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
 
-    nav.light {
-      background: rgba(244, 243, 239, 0.90);
-      border-color: rgba(0, 0, 0, 0.09);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.6);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: rgba(255, 255, 255, 0.65);
-      font-size: 14px;
-      font-weight: 400;
-      transition: color 0.3s;
-    }
-
-    nav.light .nav-links a { color: rgba(26, 26, 26, 0.6); }
-
-    .nav-links a:hover { color: rgba(255,255,255,1); }
-    nav.light .nav-links a:hover { color: rgba(26,26,26,1); }
-
-    /* ─── HERO DARK ──────────────────────────────── */
-    .hero-dark {
-      position: relative;
-      min-height: 100vh;
-      background: var(--dark);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 24px 88px;
-    }
-
-    .hero-logo-wrap {
-      margin-bottom: 40px;
-    }
-
-    .hero-eyebrow {
-      font-family: 'DM Sans', sans-serif;
+    .mono {
+      font-family: var(--mono);
       font-size: 12px;
-      letter-spacing: 0.12em;
+      letter-spacing: .04em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.38);
-      font-weight: 500;
-      margin-bottom: 20px;
     }
 
-    .hero-dark h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(46px, 8.5vw, 100px);
-      font-weight: 400;
-      color: #ffffff;
-      line-height: 1.04;
-      letter-spacing: -0.03em;
-      margin-bottom: 36px;
+    /* ─── NAV ─────────────────────────────────────── */
+    .nav { position: sticky; top: 0; z-index: 50; padding: 14px 0; transition: background .3s, box-shadow .3s; }
+    .nav.scrolled {
+      background: rgba(243,242,238,0.82);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      box-shadow: 0 1px 0 var(--line);
     }
-
-    .hero-dark h1 em {
-      font-style: italic;
-      background: linear-gradient(135deg, #9ef050 0%, #4aaa1a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 22px rgba(120, 220, 50, 0.50));
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 16px; letter-spacing: -0.02em; }
+    .brand-dot {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: url('lucas-mundo.jpg') 50% 42% / 210% no-repeat;
     }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 14px; color: var(--grey); transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
 
-    /* Social pills */
-    .social-pills {
-      display: flex;
-      gap: 9px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 36px;
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: var(--sans); font-weight: 500; font-size: 15px;
+      padding: 14px 24px; border-radius: 100px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
     }
+    .btn-ink { background: var(--ink); color: var(--white); }
+    .btn-ink:hover { background: var(--green); }
+    .btn-ghost { border-color: var(--line); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--ink); }
+    .btn-sm { padding: 10px 18px; font-size: 14px; }
+    .btn .arr { transition: transform .2s; }
+    .btn:hover .arr { transform: translateX(3px); }
 
-    .social-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      border-radius: 100px;
-      padding: 9px 17px;
-      color: rgba(255, 255, 255, 0.68);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13.5px;
-      font-weight: 400;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
-    }
-
-    .social-pill .pill-icon { font-size: 15px; line-height: 1; }
-
-    .social-pill.p-link { cursor: pointer; }
-
-    .social-pill.p-link:hover {
-      background: rgba(255, 255, 255, 0.13);
-      border-color: rgba(255, 255, 255, 0.26);
-      color: rgba(255, 255, 255, 0.95);
-    }
-
-    /* Hero body */
-    .hero-desc {
-      font-size: clamp(15px, 2vw, 17px);
-      color: rgba(255, 255, 255, 0.38);
-      max-width: 460px;
-      line-height: 1.75;
-      margin-bottom: 44px;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #ffffff;
-      color: var(--dark);
-      text-decoration: none;
-      padding: 14px 30px;
-      border-radius: 100px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      transition: opacity 0.2s;
-    }
-
-    .hero-cta:hover { opacity: 0.82; }
-
-    /* Scroll hint */
-    .scroll-hint {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.18);
-      animation: nudge 2.4s ease-in-out infinite;
-      user-select: none;
-    }
-
-    @keyframes nudge {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
-    }
-
-    /* ─── BENTO SECTION ──────────────────────────── */
-    .bento-section {
-      background: var(--bg);
-      padding-bottom: 24px;
-    }
-
-    /* ─── BENTO GRID ─────────────────────────────── */
-    .links-bento {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 80px 24px 0;
-    }
-
-    .links-bento-label {
-      font-size: 11px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--green);
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      margin-bottom: 28px;
-    }
-
-    .links-bento-grid {
+    /* ─── HERO ────────────────────────────────────── */
+    .hero { padding: 8px 0 0; }
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 12px;
+      min-height: min(calc(100vh - 92px), 740px);
     }
-
-    .bento-card {
-      background: var(--card);
-      border-radius: 20px;
-      border: 1px solid rgba(0,0,0,0.07);
-      padding: 26px;
-      position: relative;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      transition: box-shadow 0.22s ease, transform 0.22s ease;
+    .hero-copy {
+      background: var(--panel);
+      border-radius: var(--r-xl);
+      padding: clamp(32px, 5vw, 68px) clamp(28px, 5vw, 68px) 0;
+      display: flex; flex-direction: column;
     }
+    .hero-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 40px; }
 
-    .bento-card.clickable { cursor: pointer; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--grey); margin-bottom: 28px; }
+    .eyebrow i { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px rgba(76,194,122,.18); }
 
-    .bento-card.clickable:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.09);
-      transform: translateY(-3px);
+    h1 {
+      font-weight: 600;
+      font-size: clamp(44px, 6vw, 86px);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 26px;
+      text-wrap: balance;
     }
+    h1 em { font-style: normal; color: var(--green); }
 
-    /* Chip label — bordered widget tag */
-    .bento-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0,0,0,0.03);
-      border: 1px solid rgba(0,0,0,0.09);
-      border-radius: 8px;
-      padding: 5px 10px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10.5px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(26,26,26,0.4);
-      font-weight: 500;
-      margin-bottom: 24px;
+    .hero-sub {
+      font-size: clamp(16px, 1.4vw, 18px);
+      line-height: 1.6;
+      color: #4E504B;
+      max-width: 500px;
+      margin-bottom: 34px;
     }
+    .hero-sub a {
+      color: var(--ink); font-weight: 500;
+      background-image: linear-gradient(var(--green), var(--green));
+      background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat;
+      transition: color .2s, background-size .3s;
+    }
+    .hero-sub a:hover { color: var(--green); background-size: 100% 2px; }
 
-    /* Instagram */
-    .bento-card-instagram { grid-column: span 2; }
+    .hero-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
-    .bento-arrow {
+    .stats {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--line);
+      margin: 0 calc(clamp(28px, 5vw, 68px) * -1);
+    }
+    .stat { padding: 22px clamp(20px, 3vw, 32px) 26px; }
+    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat b { display: block; font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.04em; margin-bottom: 4px; }
+    .stat span { color: var(--grey); font-size: 11px; }
+
+    .hero-art {
+      border-radius: var(--r-xl);
+      background: #108336 url('lucas-mundo.jpg') 50% 100% / cover no-repeat;
+      position: relative; overflow: hidden;
+      min-height: 460px;
+    }
+    .chip {
       position: absolute;
-      top: 22px;
-      right: 22px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: var(--green);
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(14,15,13,.72);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      color: var(--white);
+      padding: 9px 13px; border-radius: 100px;
+      border: 1px solid rgba(250,250,247,.12);
     }
+    .chip i { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); }
+    .chip-tl { top: 20px; left: 20px; }
+    .chip-br { bottom: 20px; right: 20px; }
 
-    .bento-card-instagram:hover .bento-arrow {
-      background: var(--green);
-      border-color: var(--green);
-      color: #fff;
+    /* load-in */
+    .rise { opacity: 0; transform: translateY(16px); animation: rise .9s var(--ease) forwards; }
+    .d1 { animation-delay: .05s } .d2 { animation-delay: .14s } .d3 { animation-delay: .24s }
+    .d4 { animation-delay: .34s } .d5 { animation-delay: .44s }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ─── TICKER ──────────────────────────────────── */
+    .ticker {
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      overflow: hidden; padding: 16px 0; margin-top: 12px;
+      color: var(--grey);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+              mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     }
+    .ticker-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+    .ticker-track span { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; }
+    .ticker-track span::after { content: ''; width: 4px; height: 4px; background: var(--green); border-radius: 50%; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
 
-    .bento-handle {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(30px, 4.5vw, 46px);
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1;
-      letter-spacing: -0.02em;
+    /* ─── SECTIONS ────────────────────────────────── */
+    .section { padding: clamp(80px, 10vw, 130px) 0 0; }
+    .sec-head {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 32px;
+      align-items: end;
+      margin-bottom: clamp(36px, 5vw, 56px);
     }
-
-    .bento-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      color: rgba(26,26,26,0.42);
+    .sec-head .mono { color: var(--grey); display: flex; gap: 12px; }
+    .sec-head .mono b { color: var(--green); font-weight: 500; }
+    h2 {
+      font-weight: 600;
+      font-size: clamp(34px, 4.4vw, 60px);
+      line-height: 1; letter-spacing: -0.045em;
+      text-wrap: balance;
     }
+    h2 span { color: var(--grey-2); }
 
-    /* YouTube */
-    .bento-card-youtube {
-      display: flex;
-      flex-direction: column;
-      cursor: default;
-      padding: 20px;
-    }
-
-    .yt-embed {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    .yt-screen {
-      background: #0f0f0f;
-      border-radius: 10px;
-      aspect-ratio: 16 / 9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-
-    .yt-duration {
-      position: absolute;
-      bottom: 7px;
-      right: 8px;
-      background: rgba(0,0,0,0.82);
-      color: #fff;
-      font-size: 10.5px;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-family: 'DM Sans', sans-serif;
-      letter-spacing: 0.02em;
-    }
-
-    .yt-progressbar {
-      height: 3px;
-      background: rgba(0,0,0,0.08);
-      border-radius: 2px;
-      margin-bottom: 11px;
-    }
-
-    .yt-progress-fill {
-      height: 100%;
-      width: 0%;
-      background: #ff0000;
-      border-radius: 2px;
-    }
-
-    .yt-meta { display: flex; flex-direction: column; gap: 3px; }
-
-    .yt-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    .yt-channel {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11.5px;
-      color: rgba(26,26,26,0.42);
-    }
-
-    .yt-coming-soon {
-      margin-top: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      color: var(--green);
-      font-weight: 500;
-      letter-spacing: 0.03em;
-    }
-
-    .yt-coming-soon::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 6px var(--green);
-      flex-shrink: 0;
-    }
-
-    /* WhatsApp */
-    .bento-card-whatsapp {
-      background: #171715;
-      border-color: transparent;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 240px;
-    }
-
-    .bento-card-whatsapp .bento-chip {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.32);
-    }
-
-    .bento-card-whatsapp:hover {
-      box-shadow: 0 6px 28px rgba(0,0,0,0.28);
-      transform: translateY(-3px);
-    }
-
-    .bento-green-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      color: #6abf3a;
-      background: rgba(59, 109, 17, 0.18);
-      border-radius: 100px;
-      padding: 5px 12px;
-      margin-bottom: 18px;
-      width: fit-content;
-    }
-
-    .bento-green-pill::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #6abf3a;
-      box-shadow: 0 0 7px #6abf3a;
-      flex-shrink: 0;
-    }
-
-    .bento-cta {
-      font-family: 'Instrument Serif', serif;
-      font-size: 28px;
-      color: #F4F3EF;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-    }
-
-    .bento-card-whatsapp .bento-sub {
-      font-size: 12px;
-      color: rgba(255,255,255,0.28);
-      margin-top: 10px;
-    }
-
-    /* ─── SUBSCRIBE POPUP ───────────────────────── */
-    .subscribe-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(12, 12, 10, 0.65);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* ─── TRAJETÓRIA ──────────────────────────────── */
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .step {
+      background: var(--panel);
+      border-radius: var(--r-lg);
       padding: 24px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
+      min-height: 320px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: transform .4s var(--ease);
     }
+    .step:hover { transform: translateY(-4px); }
+    .step-top { display: flex; justify-content: space-between; align-items: center; color: var(--grey); }
+    .step .big { font-size: clamp(44px, 4.6vw, 64px); font-weight: 600; letter-spacing: -0.06em; line-height: .9; margin: 40px 0 0; }
+    .step .big small { font-size: .42em; letter-spacing: -0.02em; color: var(--grey); font-weight: 500; }
+    .step h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .step p { font-size: 14px; line-height: 1.5; color: #5C5E59; }
+    .step p a { color: inherit; border-bottom: 1px solid currentColor; }
 
-    .subscribe-overlay.visible {
-      opacity: 1;
-      pointer-events: all;
+    .step.now { background: var(--ink); color: var(--white); }
+    .step.now .step-top { color: var(--grey-2); }
+    .step.now .big small { color: var(--grey-2); }
+    .step.now p { color: rgba(250,250,247,.62); }
+    .now-tag { display: inline-flex; align-items: center; gap: 7px; color: var(--signal); }
+    .now-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(76,194,122,.55) } 70%,100% { box-shadow: 0 0 0 8px rgba(76,194,122,0) } }
+
+    .step.next { background: transparent; border: 1px dashed var(--grey-2); }
+
+
+    /* ─── ID CARD ─────────────────────────────────── */
+    .idc-stage {
+      display: flex; justify-content: center;
+      perspective: 1400px;
+      padding: 10px 0 clamp(64px, 8vw, 100px);
     }
-
-    .subscribe-modal {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 48px 40px 40px;
-      max-width: 440px;
-      width: 100%;
+    .idc-wrap { width: min(680px, 100%); container-type: inline-size; }
+    .idc {
+      --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 30%;
       position: relative;
-      text-align: center;
-      transform: translateY(20px);
-      transition: transform 0.35s ease;
+      aspect-ratio: 1.586;
+      border-radius: 4.4cqw;
+      padding: 3.6cqw 4.2cqw 4cqw;
+      background:
+        radial-gradient(120% 90% at 0% 0%, #FFFFFF 0%, transparent 55%),
+        linear-gradient(160deg, #F8F7F2 0%, #ECEBE5 100%);
+      border: 1px solid rgba(14,15,13,.10);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.9) inset,
+        0 2px 4px rgba(14,15,13,.06),
+        0 18px 40px -12px rgba(14,15,13,.28),
+        0 50px 90px -30px rgba(14,15,13,.30);
+      transform: rotateX(var(--rx)) rotateY(var(--ry)) rotate(-1.5deg);
+      transform-style: preserve-3d;
+      transition: transform .5s var(--ease);
+      overflow: hidden;
+      color: var(--ink);
+    }
+    .idc.tilting { transition: transform .08s linear; }
+    .idc::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      opacity: .35; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.45 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .idc::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.55), transparent 45%);
+      mix-blend-mode: soft-light;
     }
 
-    .subscribe-overlay.visible .subscribe-modal {
-      transform: translateY(0);
+    .idc-top {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--mono); font-size: 1.45cqw; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--grey);
+      padding-bottom: 2cqw;
+      border-bottom: .35cqw solid var(--green);
     }
+    .idc-top span:first-child { display: inline-flex; align-items: center; gap: 1cqw; color: var(--ink); }
+    .idc-top span:first-child::before { content: ''; width: 1cqw; height: 1cqw; border-radius: 50%; background: var(--green); }
+    .idc-top b { color: var(--green); font-weight: 500; font-size: 1.9cqw; letter-spacing: .04em; }
 
-    .subscribe-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.1);
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #999;
-      transition: border-color 0.2s, color 0.2s;
-      font-family: 'DM Sans', sans-serif;
+    .idc-main { display: grid; grid-template-columns: 27cqw 1fr; gap: 3.6cqw; margin-top: 3cqw; }
+
+    .idc-photo {
+      aspect-ratio: 4 / 5;
+      border-radius: 1.4cqw;
+      overflow: hidden;
+      border: 1px solid rgba(14,15,13,.18);
+      background: #ccc;
+      position: relative;
     }
+    .idc-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%;
+      filter: grayscale(1) contrast(1.15) brightness(1.02) sepia(.12);
+    }
+    .idc-photo::after {
+      content: ''; position: absolute; inset: 0;
+      box-shadow: inset 0 0 3cqw rgba(14,15,13,.25);
+    }
+    .idc-code { margin-top: 1.8cqw; }
+    .idc-code svg { display: block; width: 100%; height: 6.4cqw; }
+    .idc-code span { display: block; font-family: var(--mono); font-size: 1.25cqw; letter-spacing: .14em; color: var(--grey); margin-top: .6cqw; text-align: center; }
 
-    .subscribe-close:hover { border-color: rgba(0,0,0,0.25); color: #444; }
-
-    .subscribe-eyebrow {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
+    .idc-info { position: relative; display: flex; flex-direction: column; }
+    .idc-title { position: relative; padding-top: 5.6cqw; margin-bottom: 1.2cqw; }
+    .idc-title strong {
+      display: block;
+      font-size: 7.2cqw; font-weight: 700; letter-spacing: -0.05em; line-height: .85;
+    }
+    .idc-title .script {
+      position: absolute; left: 17cqw; top: -1.4cqw;
+      font-family: 'Mrs Saint Delafield', cursive;
+      font-size: 8.6cqw; line-height: 1;
       color: var(--green);
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .subscribe-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: 30px;
-      color: var(--text);
-      line-height: 1.12;
-      margin-bottom: 12px;
-    }
-
-    .subscribe-desc {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      color: rgba(26,26,26,0.48);
-      line-height: 1.65;
-      margin-bottom: 28px;
-      max-width: 320px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .subscribe-form {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .subscribe-input {
-      flex: 1;
-      padding: 13px 18px;
-      border: 1px solid rgba(0,0,0,0.11);
-      border-radius: 100px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      color: var(--text);
-      background: #f7f6f2;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .subscribe-input:focus { border-color: var(--green); }
-
-    .subscribe-btn {
-      background: var(--text);
-      color: #fff;
-      border: none;
-      border-radius: 100px;
-      padding: 13px 22px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
+      transform: rotate(-7deg);
       white-space: nowrap;
-      transition: opacity 0.2s;
+    }
+    .idc-legal { font-size: 1.2cqw; line-height: 1.45; color: var(--grey); max-width: 34cqw; margin-bottom: 2cqw; }
+
+    .idc-fields { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(14,15,13,.22); }
+    .idc-f { padding: .9cqw 1.3cqw 1cqw; border-bottom: 1px solid rgba(14,15,13,.22); min-width: 0; }
+    .idc-f:nth-child(odd) { border-right: 1px solid rgba(14,15,13,.22); }
+    .idc-f.full { grid-column: span 2; border-right: 0; }
+    .idc-f:last-child { border-bottom: 0; }
+    .idc-f label { display: block; font-family: var(--mono); font-size: 1.05cqw; letter-spacing: .08em; text-transform: uppercase; color: var(--grey); margin-bottom: .3cqw; }
+    .idc-f div { font-size: 1.95cqw; font-weight: 600; letter-spacing: -0.01em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .idc-f .sig { font-family: 'Mrs Saint Delafield', cursive; font-size: 4.4cqw; font-weight: 400; text-transform: none; line-height: .9; letter-spacing: 0; color: var(--ink); height: 3.4cqw; overflow: visible; }
+    .idc-f .exp { font-family: var(--mono); font-size: 1.3cqw; font-weight: 500; letter-spacing: .02em; white-space: normal; line-height: 1.55; text-overflow: clip; }
+    .idc-f .exp span { white-space: nowrap; }
+    .idc-f .exp i { font-style: normal; color: var(--green); margin: 0 .5cqw; }
+
+    .idc-stamp {
+      position: absolute; right: -4cqw; bottom: -4cqw;
+      width: 17cqw; height: 17cqw;
+      color: var(--green);
+      opacity: .42;
+      transform: rotate(-16deg);
+      mix-blend-mode: multiply;
+      pointer-events: none;
     }
 
-    .subscribe-btn:hover { opacity: 0.78; }
-
-    .subscribe-note {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      color: rgba(26,26,26,0.3);
+    /* timeline arrows + locked next step */
+    .timeline { position: relative; }
+    .step { position: relative; }
+    .step + .step::before {
+      content: '→'; position: absolute; left: -12px; top: 50%;
+      width: 24px; height: 24px; margin-top: -12px; border-radius: 50%;
+      background: var(--paper); border: 1px solid var(--line);
+      display: grid; place-items: center;
+      font-size: 12px; color: var(--grey);
+      z-index: 2;
     }
+    .step.next .big, .step.next .step-body {
+      filter: blur(9px); opacity: .7;
+      user-select: none; pointer-events: none;
+    }
+    .lock {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--ink); color: var(--white);
+      padding: 9px 14px; border-radius: 100px;
+      white-space: nowrap;
+    }
+    .lock svg { width: 12px; height: 12px; }
 
-    /* ─── FOOTER ─────────────────────────────────── */
+    /* ─── CONECTE-SE ──────────────────────────────── */
+    .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+    .tile {
+      border-radius: var(--r-lg);
+      padding: clamp(24px, 3vw, 34px);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 290px;
+      transition: transform .4s var(--ease);
+    }
+    a.tile:hover { transform: translateY(-4px); }
+    .tile-label { opacity: .6; }
+    .tile-arrow {
+      position: absolute; top: 22px; right: 22px;
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid currentColor;
+      display: grid; place-items: center;
+      font-size: 18px; opacity: .8;
+      transition: transform .3s var(--ease), background .3s, color .3s, opacity .3s;
+    }
+    a.tile:hover .tile-arrow { transform: rotate(45deg); opacity: 1; }
+
+    .t-insta { grid-column: span 4; background: var(--ink); color: var(--white); }
+    .t-insta:hover .tile-arrow { background: var(--white); color: var(--ink); }
+    .t-insta .handle {
+      font-size: clamp(38px, 6vw, 84px); font-weight: 600;
+      letter-spacing: -0.06em; line-height: .95;
+      margin: 40px 0 12px; overflow-wrap: anywhere;
+    }
+    .t-insta p { color: rgba(250,250,247,.55); font-size: 16px; }
+
+    .t-whats { grid-column: span 2; background: var(--green); color: var(--white); }
+    .t-whats:hover { background: var(--green-d); }
+    .t-whats:hover .tile-arrow { background: var(--white); color: var(--green); }
+    .live { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; color: #BEEBCF; }
+    .live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); animation: pulse 2s infinite; }
+    .t-whats .cta { font-size: clamp(30px, 2.8vw, 38px); font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+    .t-whats p { margin-top: 10px; font-size: 14px; color: rgba(250,250,247,.65); }
+
+    .t-yt { grid-column: span 3; background: var(--panel); }
+    .yt-screen {
+      margin: 22px 0 18px;
+      aspect-ratio: 16/8;
+      border-radius: 14px;
+      background: var(--ink);
+      display: grid; place-items: center;
+      position: relative; overflow: hidden;
+    }
+    .yt-screen::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(var(--line-d) 1px, transparent 1px), linear-gradient(90deg, var(--line-d) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: .5;
+    }
+    .yt-play {
+      position: relative;
+      width: 58px; height: 58px; border-radius: 50%;
+      border: 1px solid rgba(250,250,247,.3);
+      color: var(--white);
+      display: grid; place-items: center;
+      font-size: 16px; padding-left: 3px;
+    }
+    .yt-soon { position: absolute; left: 14px; bottom: 12px; color: var(--grey-2); display: inline-flex; gap: 7px; align-items: center; }
+    .yt-soon::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #E5484D; }
+    .t-yt h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; }
+    .t-yt p { font-size: 14px; color: var(--grey); margin-top: 4px; }
+
+    .t-news { grid-column: span 3; background: var(--white); border: 1px solid var(--line); }
+    .t-news h3 { font-weight: 600; font-size: clamp(28px, 2.8vw, 38px); line-height: 1.02; letter-spacing: -0.045em; margin: 22px 0 12px; text-wrap: balance; }
+    .t-news p { color: var(--grey); font-size: 15px; line-height: 1.55; max-width: 420px; }
+    .news-form {
+      display: flex; gap: 6px; margin-top: 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 100px; padding: 5px;
+      transition: border-color .2s;
+    }
+    .news-form:focus-within { border-color: var(--green); }
+    .news-form input {
+      flex: 1; min-width: 0;
+      border: 0; background: transparent; outline: none;
+      font: inherit; font-size: 15px;
+      padding: 0 14px; color: var(--ink);
+    }
+    .news-form .btn { padding: 11px 20px; font-size: 14px; }
+    .t-news .news-note, .news-note { color: var(--grey); font-size: 11px; margin-top: 12px; padding-left: 16px; }
+
+    /* ─── FOOTER ──────────────────────────────────── */
     footer {
-      background: #0C0C0A;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 52px 48px 44px;
+      margin-top: clamp(80px, 10vw, 130px);
+      background: var(--ink); color: var(--white);
+      padding: clamp(48px, 6vw, 72px) 0 26px;
+      overflow: hidden;
+    }
+    .foot-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+    .foot-top h2 { max-width: 620px; }
+    .foot-top h2 span { color: var(--grey); }
+    .foot-top .btn { background: var(--white); color: var(--ink); }
+    .foot-top .btn:hover { background: var(--signal); }
+    .wordmark {
+      font-weight: 600;
+      font-size: clamp(54px, 13.6vw, 196px);
+      letter-spacing: -0.07em; line-height: .78;
+      margin: clamp(56px, 9vw, 110px) 0 30px;
+      white-space: nowrap;
+      color: var(--white);
+    }
+    .wordmark span { color: var(--green); }
+    .foot-bottom {
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      border-top: 1px solid var(--line-d);
+      padding-top: 20px;
+      color: var(--grey);
+    }
+    .foot-bottom a:hover { color: var(--white); }
+
+    /* ─── POPUP ───────────────────────────────────── */
+    .overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(14,15,13,.5);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity .35s;
+    }
+    .overlay.visible { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 40px 32px 30px;
+      max-width: 440px; width: 100%;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,.25);
+      transform: translateY(16px);
+      transition: transform .45s var(--ease);
+    }
+    .overlay.visible .modal { transform: none; }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--line); background: transparent;
+      cursor: pointer; font-size: 13px; color: var(--grey);
+    }
+    .modal-close:hover { border-color: var(--ink); color: var(--ink); }
+    .modal .mono { color: var(--green); }
+    .modal h3 { font-weight: 600; font-size: 32px; line-height: 1.02; letter-spacing: -0.045em; margin: 14px 0 12px; }
+    .modal p { font-size: 15px; line-height: 1.55; color: var(--grey); }
+
+    /* ─── REVEAL ──────────────────────────────────── */
+    .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; min-height: 0; }
+      .hero-art { min-height: 0; aspect-ratio: 1 / 1; }
+      .nav-links { display: none; }
+      .sec-head { grid-template-columns: 1fr; gap: 14px; }
+      .timeline { grid-template-columns: 1fr 1fr; }
+      .step:nth-child(3)::before { display: none; }
+      .t-insta, .t-whats, .t-yt, .t-news { grid-column: span 6; }
+      .t-whats { min-height: 230px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding: 0 16px; }
+      .hero-copy { padding: 32px 22px 0; }
+      .stats { margin: 0 -22px; }
+      .stat { padding: 18px 14px 20px; }
+      .hero-actions { flex-direction: column; }
+      .stat b { font-size: 21px; white-space: nowrap; }
+      .timeline { grid-template-columns: 1fr; }
+      .step + .step::before, .step:nth-child(3)::before { display: grid; content: '↓'; left: 50%; top: -12px; margin: 0 0 0 -12px; }
+      .step { min-height: 240px; }
+      .tile-arrow { width: 40px; height: 40px; top: 18px; right: 18px; }
     }
 
-    .footer-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1.5fr 1.5fr;
-      align-items: start;
-      gap: 32px;
-    }
-
-    .footer-brand {
-      font-family: 'Instrument Serif', serif;
-      font-size: 21px;
-      color: #ffffff;
-      line-height: 1.3;
-    }
-
-    .footer-brand em {
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.45);
-    }
-
-    .footer-col {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .footer-col p {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10.5px;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.35);
-      line-height: 1.85;
-    }
-
-    @media (max-width: 600px) {
-      footer { padding: 44px 28px 40px; }
-      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-    }
-
-    /* ─── RESPONSIVE ─────────────────────────────── */
-    @media (max-width: 640px) {
-      .hero-dark h1 { letter-spacing: -0.02em; }
-      .social-pills { gap: 7px; }
-      .social-pill { padding: 8px 13px; font-size: 12.5px; }
-      nav { gap: 16px; padding: 8px 14px 8px 8px; }
-      .nav-links { gap: 12px; }
-      .nav-links a { font-size: 13px; }
-      .links-bento-grid { grid-template-columns: 1fr; }
-      .bento-card-instagram { grid-column: span 1; }
-      .bento-handle { font-size: 22px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .ticker-track { animation: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══ NAVBAR ══════════════════════════════════ -->
-  <nav id="main-nav" aria-label="Navegação">
-    <div class="nav-logo" aria-label="Logo Lucas Feitosa">
-      <svg viewBox="0 0 100 115" xmlns="http://www.w3.org/2000/svg" width="30" height="34" aria-hidden="true">
-        <path fill="#3B6D11" d="M 55 8 C 78 6 92 22 92 40 C 92 58 86 75 78 83 L 72 100 L 50 100 L 50 88 C 44 88 36 84 30 78 C 22 70 14 60 10 53 C 12 47 16 40 20 36 C 18 26 24 14 35 10 C 42 7 50 7 55 8 Z"/>
-        <polygon fill="rgba(244,243,239,0.9)" points="68,17 70,27 77,19 74,29 84,26 76,33 86,35 76,37 84,44 74,41 77,51 70,43 68,53 66,43 59,51 62,41 50,35 60,37 52,26 60,33 59,19 66,27"/>
-      </svg>
+  <!-- ═══ NAV ═══════════════════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="#home" aria-label="Lucas Feitosa — início">
+        <span class="brand-dot" aria-hidden="true"></span>
+        Lucas Feitosa
+      </a>
+      <ul class="nav-links">
+        <li><a href="#trajetoria">Trajetória</a></li>
+        <li><a href="#conecte">Conecte-se</a></li>
+        <li><a href="https://instagram.com/1lucas.feitosa" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+      <a class="btn btn-ink btn-sm" href="https://wa.me/5544998773435" target="_blank" rel="noopener">Fala comigo</a>
     </div>
-    <ul class="nav-links">
-      <li><a href="#conecte">Conecte-se</a></li>
-      <li><a href="https://instagram.com/1lucas.feitosa" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="https://wa.me/5544998773435" target="_blank" rel="noopener">WhatsApp</a></li>
-    </ul>
-  </nav>
+  </header>
 
-  <!-- ═══ FOLD 1 — DARK HERO ════════════════════ -->
-  <section class="hero-dark" id="home">
+  <!-- ═══ HERO ══════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
 
-    <p class="hero-eyebrow">Para jovens que querem crescer construindo negócios</p>
+      <div class="hero-copy">
+        <div class="hero-main">
+          <span class="eyebrow mono rise d1"><i></i>Para jovens que querem crescer construindo negócios</span>
 
-    <h1>Aprenda com quem<br>está <em>construindo</em></h1>
+          <h1 class="rise d2">Aprenda com quem está <em>construindo.</em></h1>
 
-    <div class="social-pills">
-      <div class="social-pill p-link"
-           onclick="window.open('https://instagram.com/1lucas.feitosa','_blank')">
-        <span class="pill-icon">📸</span>
-        <span>@1lucas.feitosa</span>
+          <p class="hero-sub rise d3">
+            De cidade pequena para o mundo. Ajudei a construir e alavancar a
+            <a href="https://instagram.com/ofitfeed" target="_blank" rel="noopener">@ofitfeed</a>
+            do zero até 250k seguidores e hoje construo as mídias do
+            <a href="https://instagram.com/rony" target="_blank" rel="noopener">@rony</a>
+            e do
+            <a href="https://instagram.com/manualdedonos" target="_blank" rel="noopener">@manualdedonos</a>.
+          </p>
+
+          <div class="hero-actions rise d4">
+            <a class="btn btn-ink" href="https://wa.me/5544998773435" target="_blank" rel="noopener">Fala comigo <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="https://instagram.com/1lucas.feitosa" target="_blank" rel="noopener">@1lucas.feitosa</a>
+          </div>
+        </div>
+
+        <div class="stats rise d5">
+          <div class="stat"><b>250k</b><span class="mono">Seguidores · FitFeed</span></div>
+          <div class="stat"><b>PR → BR</b><span class="mono">Paranavaí pro mundo</span></div>
+        </div>
       </div>
-      <div class="social-pill">
-        <span class="pill-icon">▶</span>
-        <span>YouTube — em breve</span>
+
+      <div class="hero-art rise d3" role="img" aria-label="Ilustração: uma pessoa com o planeta Terra no lugar da cabeça">
+        <span class="chip chip-br mono">Branding · Posicionamento · Audiência</span>
       </div>
-      <div class="social-pill p-link"
-           onclick="window.open('https://wa.me/5544998773435','_blank')">
-        <span class="pill-icon">💬</span>
-        <span>WhatsApp</span>
-      </div>
+
     </div>
 
-    <p class="hero-desc">
-      De cidade pequena para o mundo. 20 anos.<br>
-      Ajudei a construir a FitFeed do zero até 250k seguidores, hoje o maior jornal de wellness do Brasil. Agora faço parte do ecossistema Rony Meisler, no Manual de Donos, uma das maiores escolas de educação para empreendedores do país.
-    </p>
-
-    <a class="hero-cta" href="https://wa.me/5544998773435" target="_blank" rel="noopener">
-      → Fala comigo
-    </a>
-
-    <div class="scroll-hint" aria-hidden="true">↓</div>
-
+    <div class="ticker mono" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Branding</span><span>Posicionamento</span><span>Audiência</span><span>Estratégia</span><span>Conteúdo</span><span>Build in public</span><span>Negócios</span>
+        <span>Branding</span><span>Posicionamento</span><span>Audiência</span><span>Estratégia</span><span>Conteúdo</span><span>Build in public</span><span>Negócios</span>
+      </div>
+    </div>
   </section>
 
-  <!-- ═══ FOLD 2 — LINKS ════════════════════════ -->
-  <div class="bento-section" id="conecte">
-    <div class="links-bento">
+  <!-- ═══ TRAJETÓRIA ════════════════════════════════ -->
+  <section class="section" id="trajetoria">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mono"><b>01</b> Trajetória</span>
+        <h2>De cidade pequena para o mundo. <span>Cada capítulo virou um degrau.</span></h2>
+      </div>
 
-      <p class="links-bento-label">Conecte-se</p>
 
-      <div class="links-bento-grid">
-
-        <!-- Instagram — full width -->
-        <div class="bento-card bento-card-instagram clickable"
-             onclick="window.open('https://instagram.com/1lucas.feitosa','_blank')">
-          <div class="bento-chip">Instagram</div>
-          <div class="bento-arrow">↗</div>
-          <div class="bento-handle">@1lucas.feitosa</div>
-          <p class="bento-sub">Estratégia, bastidores e construção.</p>
-        </div>
-
-        <!-- YouTube — half width -->
-        <div class="bento-card bento-card-youtube">
-          <div class="bento-chip">YouTube</div>
-          <div class="yt-embed">
-            <div class="yt-screen">
-              <svg viewBox="0 0 68 48" width="52" height="37" aria-hidden="true">
-                <path d="M66.5 7.7c-.8-2.9-2.9-5-5.8-5.8C55.4 0 34 0 34 0S12.6 0 7.3 1.9C4.5 2.7 2.4 4.8 1.5 7.7 0 13 0 24 0 24s0 11 1.5 16.3c.8 2.9 2.9 5 5.8 5.8C12.6 48 34 48 34 48s21.4 0 26.7-1.9c2.9-.8 5-2.9 5.8-5.8C68 35 68 24 68 24s0-11-1.5-16.3z" fill="#ff0000"/>
-                <path d="M45 24L27 14v20" fill="white"/>
-              </svg>
-              <div class="yt-duration">Em breve</div>
+      <div class="idc-stage reveal">
+        <div class="idc-wrap">
+          <div class="idc" id="idc" aria-label="Licença de construtor de Lucas Feitosa Santos">
+            <div class="idc-top">
+              <span>Licença de construtor · Brasil</span>
+              <span>Nº <b>044 2026</b></span>
             </div>
-            <div class="yt-progressbar">
-              <div class="yt-progress-fill"></div>
-            </div>
-            <div class="yt-meta">
-              <div class="yt-title">Documentando a construção.</div>
-              <div class="yt-channel">Lucas Feitosa Santos</div>
-              <div class="yt-coming-soon">Aguarde os próximos dias</div>
+
+            <div class="idc-main">
+              <div>
+                <div class="idc-photo">
+                  <!-- Trocar pela foto: lucas-foto.jpg -->
+                  <img src="lucas-mundo.jpg" alt="Lucas Feitosa" />
+                </div>
+                <div class="idc-code">
+                  <svg id="barcode" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"></svg>
+                  <span>44 0526 1987 0250 0000</span>
+                </div>
+              </div>
+
+              <div class="idc-info">
+                <div class="idc-title">
+                  <span class="script">para construir</span>
+                  <strong>LICENÇA</strong>
+                </div>
+                <p class="idc-legal">Esta licença certifica que marcas, audiências e negócios construídos pelo portador são feitos com estratégia, consistência e zero atalhos.</p>
+
+                <div class="idc-fields">
+                  <div class="idc-f"><label>Nome</label><div>Lucas</div></div>
+                  <div class="idc-f"><label>Sobrenome</label><div>Feitosa Santos</div></div>
+                  <div class="idc-f"><label>Função</label><div>Head de Mídias</div></div>
+                  <div class="idc-f"><label>Origem</label><div>Paranavaí, PR</div></div>
+                  <div class="idc-f full"><label>Assinatura</label><div class="sig">Lucas Feitosa</div></div>
+                  <div class="idc-f full"><label>Especialidades</label><div class="exp"><span>Branding</span><i>/</i><span>Posicionamento</span><i>/</i><span>Audiência</span><i>/</i><span>Estratégia</span><i>/</i><span>Build in public</span></div></div>
+                </div>
+
+                <svg class="idc-stamp" viewBox="0 0 120 120" aria-hidden="true">
+                  <defs><path id="stampc" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+                  <circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                  <circle cx="60" cy="60" r="36" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                  <text font-family="Geist Mono, monospace" font-size="9.5" letter-spacing="2.2" fill="currentColor"><textPath href="#stampc">PARANAVAÍ · PR · BUILD IN PUBLIC · APROVADO ·</textPath></text>
+                  <text x="60" y="68" text-anchor="middle" font-family="Geist, sans-serif" font-weight="700" font-size="24" fill="currentColor" letter-spacing="-1">LF</text>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- WhatsApp — half width, dark -->
-        <div class="bento-card bento-card-whatsapp clickable"
-             onclick="window.open('https://wa.me/5544998773435','_blank')">
-          <div>
-            <div class="bento-chip">WhatsApp</div>
-            <div class="bento-green-pill">Aberto a projetos</div>
-          </div>
-          <div>
-            <div class="bento-cta">Fala comigo →</div>
-            <p class="bento-sub">Aberto para projetos e parcerias.</p>
-          </div>
-        </div>
-
+      <div class="timeline">
+        <article class="step reveal">
+          <div class="step-top mono"><span>Origem</span><span>01</span></div>
+          <div class="big">PR</div>
+          <div><h3>Paranavaí</h3><p>Onde tudo começou. Interior, internet e vontade.</p></div>
+        </article>
+        <article class="step reveal">
+          <div class="step-top mono"><span>Construção</span><span>02</span></div>
+          <div class="big">250k</div>
+          <div><h3>FitFeed</h3><p>Do zero ao maior jornal de wellness do Brasil. <a href="https://instagram.com/ofitfeed" target="_blank" rel="noopener">@ofitfeed</a></p></div>
+        </article>
+        <article class="step now reveal">
+          <div class="step-top mono"><span class="now-tag">Agora</span><span>03</span></div>
+          <div class="big">MD<small> × Rony</small></div>
+          <div><h3>Mídias</h3><p>Construo as mídias do <a href="https://instagram.com/rony" target="_blank" rel="noopener">Rony Meisler</a> e do <a href="https://instagram.com/manualdedonos" target="_blank" rel="noopener">Manual de Donos</a>.</p></div>
+        </article>
+        <article class="step next reveal">
+          <div class="step-top mono"><span>Próximo</span><span>04</span></div>
+          <div class="big" aria-hidden="true">X0M</div>
+          <div class="step-body" aria-hidden="true"><h3>Nova construção</h3><p>Detalhes ainda sob sigilo. Em breve por aqui.</p></div>
+          <span class="lock mono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Em construção</span>
+        </article>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ═══ FOOTER ════════════════════════════════ -->
+  <!-- ═══ CONECTE-SE ════════════════════════════════ -->
+  <section class="section" id="conecte">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mono"><b>02</b> Conecte-se</span>
+        <h2>Acompanhe de perto. <span>Bastidores, estratégia e construção.</span></h2>
+      </div>
+
+      <div class="bento">
+        <a class="tile t-insta reveal" href="https://instagram.com/1lucas.feitosa" target="_blank" rel="noopener">
+          <span class="tile-label mono">Instagram</span>
+          <span class="tile-arrow" aria-hidden="true">↗</span>
+          <div>
+            <div class="handle">@1lucas.feitosa</div>
+            <p>Estratégia, bastidores e construção.</p>
+          </div>
+        </a>
+
+        <a class="tile t-whats reveal" href="https://wa.me/5544998773435" target="_blank" rel="noopener">
+          <div>
+            <span class="tile-label mono">WhatsApp</span>
+          </div>
+          <span class="tile-arrow" aria-hidden="true">↗</span>
+          <div>
+            <div class="cta">Fala comigo</div>
+            <p>Parcerias e boas conversas.</p>
+          </div>
+        </a>
+
+        <div class="tile t-yt reveal">
+          <span class="tile-label mono">YouTube</span>
+          <div class="yt-screen">
+            <span class="yt-play" aria-hidden="true">▶</span>
+            <span class="yt-soon mono">Em breve</span>
+          </div>
+          <div>
+            <h3>Documentando a construção.</h3>
+            <p>Aguarde os próximos dias.</p>
+          </div>
+        </div>
+
+        <div class="tile t-news reveal">
+          <span class="tile-label mono">Newsletter</span>
+          <div>
+            <h3>Acompanhe eu construindo em público.</h3>
+            <p>Documento minha jornada de construir do zero, com pílulas de conhecimento pra você aprender junto.</p>
+            <form class="news-form" data-substack>
+              <input type="email" placeholder="seu@email.com" autocomplete="email" aria-label="Seu e-mail" />
+              <button class="btn btn-ink" type="submit">Entrar</button>
+            </form>
+            <p class="news-note mono">Sem spam. Cancele quando quiser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════ -->
   <footer>
-    <div class="footer-inner">
-
-      <div class="footer-brand">
-        Lucas<em>Feitosa</em>
+    <div class="wrap">
+      <div class="foot-top">
+        <h2>Jovem se divertindo <span>enquanto se desafia.</span></h2>
+        <a class="btn" href="https://wa.me/5544998773435" target="_blank" rel="noopener">Fala comigo <span class="arr">→</span></a>
       </div>
-
-      <div class="footer-col">
-        <p>Lucas Feitosa Santos</p>
-        <p>Paranavaí, PR · 2026</p>
+      <div class="wordmark" aria-hidden="true">Lucas Feitosa<span>.</span></div>
+      <div class="foot-bottom mono">
+        <span>Lucas Feitosa Santos</span>
+        <span>Paranavaí, PR · 2026</span>
+        <a href="https://instagram.com/1lucas.feitosa" target="_blank" rel="noopener">Instagram ↗</a>
       </div>
-
-      <div class="footer-col">
-        <p>Jovem se divertindo</p>
-        <p>enquanto se desafia</p>
-      </div>
-
     </div>
   </footer>
 
-  <!-- ═══ SUBSCRIBE POPUP ══════════════════════════ -->
-  <div class="subscribe-overlay" id="subscribe-overlay" role="dialog" aria-modal="true">
-    <div class="subscribe-modal">
-      <button class="subscribe-close" id="subscribe-close" aria-label="Fechar">✕</button>
-      <p class="subscribe-eyebrow">Newsletter</p>
-      <h2 class="subscribe-title">Acompanhe eu construindo<br>em público.</h2>
-      <p class="subscribe-desc">Documento minha jornada de construir do zero. Vou soltar algumas pílulas de conhecimento para você aprender.</p>
-      <div class="subscribe-form">
-        <input
-          type="email"
-          id="subscribe-email"
-          class="subscribe-input"
-          placeholder="seu@email.com"
-          autocomplete="email"
-        />
-        <button class="subscribe-btn" id="subscribe-btn">Entrar</button>
-      </div>
-      <p class="subscribe-note">Sem spam. Cancele quando quiser.</p>
+  <!-- ═══ POPUP ═════════════════════════════════════ -->
+  <div class="overlay" id="subscribe-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <button class="modal-close" id="subscribe-close" aria-label="Fechar">✕</button>
+      <span class="mono">Newsletter</span>
+      <h3 id="modal-title">Acompanhe eu construindo em público.</h3>
+      <p>Documento minha jornada de construir do zero. Vou soltar algumas pílulas de conhecimento para você aprender.</p>
+      <form class="news-form" data-substack>
+        <input type="email" placeholder="seu@email.com" autocomplete="email" aria-label="Seu e-mail" />
+        <button class="btn btn-ink" type="submit">Entrar</button>
+      </form>
+      <p class="news-note mono">Sem spam. Cancele quando quiser.</p>
     </div>
   </div>
 
   <script>
-    // Navbar dark/light toggle
-    var hero = document.getElementById('home');
-    var nav  = document.getElementById('main-nav');
+    document.documentElement.classList.add('js');
 
-    new IntersectionObserver(function (entries) {
-      nav.classList.toggle('light', !entries[0].isIntersecting);
-    }, { threshold: 0.08 }).observe(hero);
+    // Nav background after scrolling
+    var nav = document.getElementById('nav');
+    function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 10); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Reveal on scroll
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el, i) {
+      el.style.transitionDelay = (i % 4) * 70 + 'ms';
+      io.observe(el);
+    });
+
+
+    // Barcode (deterministic)
+    (function () {
+      var svg = document.getElementById('barcode');
+      if (!svg) return;
+      var x = 0, seed = 44, out = '';
+      function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+      while (x < 200) {
+        var w = 0.8 + Math.floor(rnd() * 4) * 0.9;
+        if (rnd() > 0.38) out += '<rect x="' + x.toFixed(1) + '" y="0" width="' + w.toFixed(1) + '" height="40" fill="#0E0F0D"/>';
+        x += w + 0.9;
+      }
+      svg.innerHTML = out;
+    })();
+
+    // ID card tilt
+    (function () {
+      var card = document.getElementById('idc');
+      if (!card || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var stage = card.closest('.idc-stage');
+      stage.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'touch') return;
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        card.classList.add('tilting');
+        card.style.setProperty('--ry', ((x - 0.5) * 16).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', ((0.5 - y) * 12).toFixed(2) + 'deg');
+        card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      });
+      stage.addEventListener('pointerleave', function () {
+        card.classList.remove('tilting');
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--mx', '50%');
+        card.style.setProperty('--my', '30%');
+      });
+    })();
 
     // Subscribe popup
     var overlay = document.getElementById('subscribe-overlay');
-    var closeBtn = document.getElementById('subscribe-close');
-    var submitBtn = document.getElementById('subscribe-btn');
-    var emailInput = document.getElementById('subscribe-email');
-
     function closePopup() { overlay.classList.remove('visible'); }
 
     // Show after 2s — always (testing mode)
-    setTimeout(function () {
-      overlay.classList.add('visible');
-    }, 2000);
+    setTimeout(function () { overlay.classList.add('visible'); }, 2000);
 
-    // Close on overlay background click
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) closePopup();
-    });
-
-    // Close button
-    closeBtn.addEventListener('click', closePopup);
-
-    // Escape key
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closePopup();
-    });
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closePopup(); });
+    document.getElementById('subscribe-close').addEventListener('click', closePopup);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePopup(); });
 
     // Submit → Substack with email pre-filled
-    submitBtn.addEventListener('click', function () {
-      var email = emailInput.value.trim();
-      var base  = 'https://eulucasfeitosa.substack.com/subscribe';
-      var url   = email ? base + '?email=' + encodeURIComponent(email) : base;
-      window.open(url, '_blank');
-      closePopup();
-    });
-
-    // Submit on Enter key inside input
-    emailInput.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') submitBtn.click();
+    document.querySelectorAll('[data-substack]').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = form.querySelector('input').value.trim();
+        var base  = 'https://eulucasfeitosa.substack.com/subscribe';
+        window.open(email ? base + '?email=' + encodeURIComponent(email) : base, '_blank');
+        closePopup();
+      });
     });
   </script>
 
